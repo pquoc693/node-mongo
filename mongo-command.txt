@@ -1,0 +1,42 @@
+---create database
+  >use users
+---check data current use 
+  >db
+---delete database
+  >db.dropDatabase()
+---show all database exit
+  >show dbs
+---create collection
+  >db.createCollection('name-collection')
+---show collections
+  >show collections
+---create document (record) in collection
+  >db.name-collection.insert({field1: 'value1', field2: value2})
+  >db.name-collection.insert([{field1: 'value1', field2: value2},{field1: 'value3', field2: value4}])
+  >db.name-collection.insertOne({field1: 'value1', field2: value2})
+   >db.name-collection.insertMany([{field1: 'value1', field2: value2},{field1: 'value3', field2: value4}])
+---get all document in collection
+  >db.name-collection.find() //theo thứ tự insert
+  >db.name-collection.find().sort({$natural: -1}) //bảng chữ cái
+---comparison query operators
+  $gt: greater than
+  $gte:  greater than equal
+  $lt: less than
+  $lte: less than equal
+  $eq: equal
+  $ne: not equal
+  $in: [3,4,5,6]
+  $nin:
+  {{field1: {$gt: 3}}, {field2: 2}}
+---logical query operators
+  $and: {$and: [{field1: 1}, {field2: 2}]}
+  $or 
+  $not: {age: {$not: {$gt: 30}}}, {age: {exists: true, $not: {$gt: 30}}}
+  $nor
+---update document in collection
+  >db.name-collection.updateOne({name: 'name 1'}, {$set: {name: 'name 1 update'}})
+  >db.name-collection.updateMany({name: 'name 1'}, {$set: {name: 'name 1 update'}})
+  >db.name-collection.updateOne({name: 'name 1'}, {$push: {friends: 'name 1'}}) // update array
+  >db.name-collection.updateOne({name: 'name 1'}, {$push: {friends: {$each : ['name 1', 'name 2']}}}) // update array
+---delete document in collection
+  >db.name-collection.delete({name: 'name 1'})
